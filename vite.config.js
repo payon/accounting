@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import puterLocalhost from '../../dev/puter-localhost.mjs';
+import puterLocalhost from './dev/puter-localhost.mjs';
 
 /**
  * Writes sw.js from the bundle that was just built, so the app shell (HTML,
