@@ -18,7 +18,7 @@ export function exportBackup(store) {
 /** Throws with a readable message when the backup cannot be restored. */
 export function validateBackup(data) {
   if (!data || typeof data !== 'object') throw new Error('이 파일은 백업 파일이 아닙니다.');
-  if (data.format !== BACKUP_FORMAT) throw new Error('이 파일은 Payon 백업 파일이 아닙니다.');
+  if (data.format !== BACKUP_FORMAT) throw new Error('이 앱(Payon) 백업 파일이 아닙니다.');
   if (data.version !== 1) throw new Error(`지원하지 않는 백업 버전입니다: ${data.version}.`);
   const c = data.collections || {};
   for (const name of Object.keys(c)) {

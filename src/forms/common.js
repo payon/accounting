@@ -206,7 +206,7 @@ export function filledLines(lines, isBlank) {
 // ------------------------------------------------------------ attachments
 
 /**
- * 거래에 첨부된 파일은 이 브라우저의 Payon 저장소(attachments/<거래 id>/<파일명>)에
+ * 거래에 첨부된 파일은 이 브라우저 저장소(attachments/<거래 id>/<파일명>)에
  * 저장되며, 키-값 저장소에는 절대 두지 않는다. 거래 기록은 파일명과 경로만 저장한다.
  */
 export function attachmentsBlock(doc, onChange) {

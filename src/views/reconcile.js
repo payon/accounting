@@ -50,7 +50,7 @@ function renderStart(main, route, accounts, preselect = null) {
   if (accountId) paintInfo();
   const history = [...store.recons.values()].filter((r) => r.status === 'done').sort((a, b) => b.statementDate.localeCompare(a.statementDate));
   swap(main, el('div.page', {},
-    pageHead({ title: '계좌 대조', crumbs: [['Payon', 'banking'], ['계좌 대조']], actions: [el('a.btn', { href: '#/report/reconDiscrepancy' }, '대조 후 변경 내역')] }),
+    pageHead({ title: '계좌 대조', crumbs: [['계좌 대조']], actions: [el('a.btn', { href: '#/report/reconDiscrepancy' }, '대조 후 변경 내역')] }),
     !accounts.length ? emptyState({ iconName: 'scale', title: '대조할 계정이 없습니다', text: '먼저 은행 또는 신용카드 계정을 추가하세요.' }) : el('div.recon-start', {},
       el('div.card', {}, el('div.card-body.stack', {},
         el('h2', { style: { fontSize: '17px' } }, '어떤 계정을 대조하시겠습니까?'),

@@ -35,7 +35,7 @@ function applySettings() {
   setMoneyDefaults({ currency: store.settings.currency || 'USD' });
   setDateStyle(store.settings.dateStyle || 'mdy');
   shell?.setCompany(store.settings.company?.name);
-  document.title = store.settings.company?.name || 'Payon';
+  document.title = store.settings.company?.name || '내 회사';
 }
 
 // ---------------------------------------------------------------- routes
@@ -272,7 +272,7 @@ async function openBooks(kv, { offline = false } = {}) {
       // Said once per record; the status pill keeps showing "Not saved".
       const fresh = detail.keys.filter((k) => !refusedShown.has(k));
       for (const k of fresh) refusedShown.add(k);
-      if (fresh.length) toast(`${fresh.length}개의 변경사항을 이 브라우저의 Payon 저장소에 저장하지 못했습니다 (${detail.error?.message || '거부됨'}). 이 기기에 보관되어 나중에 다시 시도됩니다.`);
+      if (fresh.length) toast(`${fresh.length}개의 변경사항을 이 브라우저에 저장하지 못했습니다 (${detail.error?.message || '거부됨'}). 이 기기에 보관되어 나중에 다시 시도됩니다.`);
     }
   });
   store.on(() => queueRefresh());

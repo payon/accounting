@@ -54,7 +54,7 @@ export function renderAccounts(main) {
   });
   const exportCsv = () => download(toCSV([['계정번호', '이름', '유형', '설명', '잔액'], ...rows.map(({ account: a }) => [a.number || '', store.accountName(a.id, { withNumber: false }), ACCOUNT_TYPES[a.type].label, a.description || '', isBalanceSheet(a.type) ? (store.accountBalance(a.id, { includeSubs: false }) / 100).toFixed(2) : ''])]), `chart-of-accounts-${today()}.csv`, 'text/csv');
   swap(main, el('div.page', {},
-    pageHead({ title: '계정과목', crumbs: [['Payon', 'accounts'], ['계정과목']], actions: [el('a.btn', { href: '#/report/accountList' }, '보고서 실행'), splitButton('새 계정', () => openAccountForm(), [{ label: 'CSV로 내보내기', icon: 'download', onClick: exportCsv }])] }),
+    pageHead({ title: '계정과목', crumbs: [['계정과목']], actions: [el('a.btn', { href: '#/report/accountList' }, '보고서 실행'), splitButton('새 계정', () => openAccountForm(), [{ label: 'CSV로 내보내기', icon: 'download', onClick: exportCsv }])] }),
     el('div.toolbar', {},
       searchBox({ value: st.q, placeholder: '이름이나 계정번호로 필터', label: '계정과목 필터', onInput: (v) => { st.q = v; renderAccounts(main); main.querySelector('input[type="search"]')?.focus(); } }),
       selectInput({ options: [['all', '모든 계정 유형'], ...Object.entries(ACCOUNT_TYPES).map(([k, v]) => [k, v.label])], value: st.type, ariaLabel: '계정 유형', onChange: (v) => { st.type = v; renderAccounts(main); } }),

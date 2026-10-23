@@ -16,7 +16,7 @@ import { shortcutLabel } from './shortcuts.js';
 
 export const NAV = [
   {
-    id: 'accounting', label: 'Payon', icon: 'bank',
+    id: 'accounting', label: '', icon: 'bank',
     links: [['은행', 'banking'], ['계좌 대조', 'reconcile'], ['규칙', 'rules'], ['계정과목', 'accounts'], ['반복 거래', 'recurring'], ['감사 기록', 'audit']],
   },
   {
@@ -48,7 +48,7 @@ const LS_PANEL = 'bookkeeping:panel';
 export const CREATE_MENU = [
   { title: '매출', items: [['청구서', 'invoice', 'newInvoice'], ['결제 기록', 'payment', 'newPayment'], ['견적서', 'estimate', 'newEstimate'], ['매출 영수증', 'sales-receipt'], ['대변 메모', 'credit-memo'], ['환불 영수증', 'refund-receipt'], ['고객 추가', '@customer']] },
   { title: '매입', items: [['지출', 'expense', 'newExpense'], ['수표', 'check', 'newCheck'], ['매입채무', 'bill', 'newBill'], ['매입채무 결제', 'pay-bills'], ['발주서', 'purchase-order'], ['공급처 대변 메모', 'vendor-credit'], ['신용카드 환불', 'cc-credit'], ['공급처 추가', '@vendor']] },
-  { title: 'Payon', items: [['입금', 'deposit'], ['이체', 'transfer'], ['분개', 'journal'], ['신용카드 결제', 'cc-payment'], ['품목 추가', '@item'], ['계정과목 추가', '@account']] },
+  { title: '기타', items: [['입금', 'deposit'], ['이체', 'transfer'], ['분개', 'journal'], ['신용카드 결제', 'cc-payment'], ['품목 추가', '@item'], ['계정과목 추가', '@account']] },
   { title: '가져오기', items: [['은행 내역서', '@import'], ['고객', '@importCustomers'], ['공급처', '@importVendors'], ['품목', '@importItems']] },
 ];
 
@@ -161,7 +161,7 @@ export function mountShell(root, { user, picture, onSignOut }) {
     collapseBtn.addEventListener('click', () => togglePanel(false));
     nodes.push(el('div.panel-head', {}, el('span', {}, '섹션'), collapseBtn));
     const favs = (store.settings.favoriteReports || []).map((id) => reportMeta(id)).filter(Boolean);
-    const groups = [...NAV, { id: 'reports', label: '보고서', icon: 'reports', links: [['표준 보고서', 'reports'], ...favs.map((m) => [m.title, `report/${m.id}`])] }];
+    const groups = [...NAV.map((g) => (g.id === 'accounting' ? { ...g, label: store.settings.company?.name || '내 회사' } : g)), { id: 'reports', label: '보고서', icon: 'reports', links: [['표준 보고서', 'reports'], ...favs.map((m) => [m.title, `report/${m.id}`])] }];
     const exact = r ? `${r.name}/${r.params[0] || ''}` : '';
     const hasExact = groups.some((g) => g.links.some(([, t]) => t === exact));
     const isCurrent = (target) => (hasExact ? target === exact : target === active);
@@ -187,7 +187,7 @@ export function mountShell(root, { user, picture, onSignOut }) {
       nodes.push(el('div.panel-group', {}, btn, links));
     }
     nodes.push(el('div.panel-foot', {},
-      '이 브라우저의 Payon 저장소에 저장됩니다.'));
+      `${store.settings.company?.name || '내 회사'} · 이 브라우저에 저장됩니다`));
     swap(panel, ...nodes);
     panel.scrollTop = scroll;
   }
@@ -238,7 +238,7 @@ export function mountShell(root, { user, picture, onSignOut }) {
     const text = status === 'saving' ? '저장 중' : status === 'offline' ? `오프라인${pending ? `, 저장 안 됨 ${pending}건` : ''}` : status === 'error' ? '저장 안 됨' : store.readOnly ? '읽기 전용' : '저장됨';
     const ico = status === 'offline' || status === 'error' ? 'offline' : status === 'saving' ? 'refresh' : 'cloud';
     sync.replaceChildren(el('span', { html: icon(ico, 15) }), el('span.sync-text', {}, text));
-    sync.title = status === 'error' ? '이 브라우저의 Payon 저장소에 변경사항을 저장하지 못했습니다. 이 기기에 보관되며 나중에 다시 시도됩니다.' : text;
+    sync.title = status === 'error' ? '이 브라우저에 변경사항을 저장하지 못했습니다. 이 기기에 보관되며 나중에 다시 시도됩니다.' : text;
   }
   setSync({ status: 'idle', pending: 0 });
 

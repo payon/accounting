@@ -94,7 +94,7 @@ export function renderBanking(main, route) {
     el('button.bank-card.bank-card-add', { type: 'button', onclick: async () => { const acc = await openAccountForm({ type: 'bank', types: ['bank', 'creditCard'] }); if (acc) { st.accountId = acc.id; rerender(); } } }, el('span', { html: icon('plus', 18) }), '계정 추가'));
 
   if (!feedAccounts.length) {
-    swap(main, el('div.page', {}, pageHead({ title: '은행 거래', crumbs: [['Payon', 'banking'], ['은행 거래']] }),
+    swap(main, el('div.page', {}, pageHead({ title: '은행 거래', crumbs: [['은행 거래']] }),
       emptyState({ iconName: 'bank', title: '은행 계좌를 추가하세요', text: '당좌·보통·신용카드 계좌를 추가한 뒤, 은행에서 거래 내역서를 업로드하면 여기서 분류할 수 있습니다.', action: el('button.btn.btn-primary', { type: 'button', onclick: () => openAccountForm({ type: 'bank', types: ['bank', 'creditCard'] }) }, '계정 추가') })));
     return;
   }
@@ -271,7 +271,7 @@ export function renderBanking(main, route) {
   swap(main, el('div.page', {},
     pageHead({
       title: '은행 거래',
-      crumbs: [['Payon', 'banking'], ['은행 거래']],
+      crumbs: [['은행 거래']],
       actions: [
         el('a.btn', { href: '#/rules' }, '규칙'),
         splitButton('거래 업로드', () => openBankImport(st.accountId), [

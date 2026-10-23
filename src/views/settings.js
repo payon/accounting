@@ -84,9 +84,9 @@ export function renderSettings(main, route) {
             try {
               const path = `backups/books-backup-${today()}-${Date.now()}.json`;
               await fs.write(path, JSON.stringify(exportBackup(store)), { createMissingParents: true });
-              toast('Payon 저장소에 백업을 저장했습니다');
+              toast(`${store.settings.company?.name || '내 회사'} 백업을 이 브라우저에 저장했습니다`);
             } catch (e) { toastError(`저장하지 못했습니다: ${e.message || e}`); }
-          } }, el('span', { html: icon('cloud', 16) }), 'Payon 저장소에 백업 저장'),
+          } }, el('span', { html: icon('cloud', 16) }), '백업 저장(이 브라우저)'),
           el('button.btn', { type: 'button', onclick: restore }, el('span', { html: icon('upload', 16) }), '백업에서 복원'))),
       section('샘플 회사', '예시 디자인 스튜디오 9개월치 데이터로 장부를 채워 모든 화면을 살펴볼 수 있습니다.',
         el('button.btn', { type: 'button', onclick: async () => {
@@ -117,7 +117,7 @@ export function renderSettings(main, route) {
           el('dt', {}, '거래'), el('dd', {}, String(stats.txns)),
           el('dt', {}, '원장 기입'), el('dd', {}, String(stats.postings)),
           el('dt', {}, '원장 잔액 검사'), el('dd', {}, stats.imbalance === 0 ? '차변과 대변이 일치합니다' : `${formatMoney(stats.imbalance)}만큼 불일치`),
-          el('dt', {}, '저장소'), el('dd', {}, '이 브라우저의 Payon 저장소'))));
+          el('dt', {}, '저장소'), el('dd', {}, `${store.settings.company?.name || '내 회사'} · 이 브라우저에 저장`))));
   }
 
   swap(main, el('div.page.settings', {},

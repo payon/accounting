@@ -56,7 +56,7 @@ export function renderRecurring(main) {
     empty: emptyState({ iconName: 'repeat', title: '반복 거래가 없습니다', text: '청구서, 매입채무, 지출 또는 분개를 열어 하단의 "반복 거래로 등록"을 선택하면 일정으로 저장됩니다.' }),
   });
   swap(main, el('div.page', {},
-    pageHead({ title: '반복 거래', crumbs: [['Payon', 'banking'], ['반복 거래']], actions: [el('button.btn.btn-primary', { type: 'button', onclick: () => newTemplate() }, '새로 만들기')] }),
+    pageHead({ title: '반복 거래', crumbs: [['반복 거래']], actions: [el('button.btn.btn-primary', { type: 'button', onclick: () => newTemplate() }, '새로 만들기')] }),
     table.root));
 }
 
@@ -151,7 +151,7 @@ export function renderAudit(main) {
     { key: 'amount', label: '금액', align: 'right', render: (r) => (r.col === 'txns' ? amountNode(store.total(r.rec)) : ''), sortable: false },
   ];
   swap(main, el('div.page', {},
-    pageHead({ title: '감사 기록', crumbs: [['Payon', 'banking'], ['감사 기록']] }),
+    pageHead({ title: '감사 기록', crumbs: [['감사 기록']] }),
     tabs([['all', '전체'], ['txns', '거래'], ['contacts', '거래처'], ['accounts', '계정'], ['items', '품목']], st.kind, (k) => { st.kind = k; renderAudit(main); }, { label: '필터' }),
     el('p.field-hint', { style: { marginBottom: '10px' } }, '장부의 최근 변경 내역이며 최신 항목이 먼저 표시됩니다. 삭제된 기록은 나열되지 않습니다.'),
     dataTable({

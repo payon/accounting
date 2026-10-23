@@ -51,7 +51,7 @@ export function renderRules(main) {
     empty: emptyState({ iconName: 'rules', title: '아직 규칙이 없습니다', text: '규칙은 은행 거래가 도착하면 자동으로 분류합니다. 예를 들어 내용에 "Pixel Cloud"가 포함된 모든 거래를 소프트웨어로 분류할 수 있습니다.', action: el('button.btn.btn-primary', { type: 'button', onclick: () => openRuleForm() }, '규칙 만들기') }),
   });
   swap(main, el('div.page', {},
-    pageHead({ title: '규칙', crumbs: [['Payon', 'banking'], ['규칙']], actions: [el('button.btn.btn-primary', { type: 'button', onclick: () => openRuleForm() }, '새 규칙')] }),
+    pageHead({ title: '규칙', crumbs: [['규칙']], actions: [el('button.btn.btn-primary', { type: 'button', onclick: () => openRuleForm() }, '새 규칙')] }),
     el('p.field-hint', { style: { marginBottom: '12px' } }, '규칙은 위에서 아래로 적용되며, 거래에 처음으로 일치하는 규칙이 사용됩니다.'),
     table.root));
 }
