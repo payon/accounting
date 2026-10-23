@@ -1,0 +1,6 @@
+{
+  "identifier": "default",
+  "description": "기본 권한(웹뷰만 사용, 플러그인 API 없음)",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

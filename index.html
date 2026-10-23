@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Payon</title>
+  <meta name="description" content="복식부기 회계: 청구서, 지출, 은행 거래, 입력대사, 재무제표를 이 브라우저에 안전하게 저장합니다." />
+  <meta name="theme-color" content="#f3f4f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Payon" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="./favicon-16x16.png" type="image/png" sizes="16x16" />
+  <link rel="icon" href="./favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="./favicon-48x48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
+  <script>
+    // 저장된 테마를 첫 렌더 전에 적용해 화면 깜빡임을 막는다.
+    (() => {
+      try {
+        const t = localStorage.getItem('bookkeeping:theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    })();
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <noscript>Payon을 사용하려면 자바스크립트가 필요합니다.</noscript>
+</body>
+</html>

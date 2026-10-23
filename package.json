@@ -1,0 +1,26 @@
+{
+  "name": "payon",
+  "version": "1.0.0",
+  "description": "복식부기 회계: 청구서, 지출, 은행 거래, 입력대사, 재무제표 (로컬 저장소)",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev"
+  },
+  "dependencies": {
+    "lucide": "^1.28.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "fake-indexeddb": "^6.0.0",
+    "vite": "^8.2.0",
+    "vitest": "^3.2.0"
+  }
+}
